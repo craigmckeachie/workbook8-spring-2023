@@ -5,6 +5,6 @@ Content-Type: application/json
 {
     "userId": 2,
     "title": "clean your room",
-    "completed": false,
+    "completed": false
 }
 
