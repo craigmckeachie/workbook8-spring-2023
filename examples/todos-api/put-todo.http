@@ -1,0 +1,12 @@
+
+PUT http://localhost:3000/todos/10
+Content-Type: application/json
+
+{
+    "userId": 3,
+    "title": "milk the cow",
+    "completed": true
+}
+
+
+

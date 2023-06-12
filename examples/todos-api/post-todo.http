@@ -1,0 +1,10 @@
+
+POST http://localhost:3000/todos/
+Content-Type: application/json
+
+{
+    "userId": 2,
+    "title": "clean your room",
+    "completed": false,
+}
+
