@@ -1,4 +1,5 @@
-1. Change directory to `learntocode`
+1. Open a terminal
+1. Change your directory to `learntocode`
 2. Setup the API
    ```
    git clone https://github.com/craigmckeachie/api
