@@ -37,7 +37,6 @@
 
         let form = event.target;
         let formData = new FormData(form);
-        // console.log(formData);
         let user = Object.fromEntries(formData.entries());
 
         fetch("http://localhost:3000/users", {
@@ -51,7 +50,7 @@
           })
           .then(function (user) {
             console.log(user);
-            alert("success");
+            window.location.replace("index.html");
           });
       }
     </script>
