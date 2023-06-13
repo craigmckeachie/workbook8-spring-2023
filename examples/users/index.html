@@ -62,7 +62,9 @@
         row.appendChild(cell4);
 
         let cell5 = document.createElement("td");
-        cell5.innerText = user.company.name;
+        if (user.company) {
+          cell5.innerText = user.company.name;
+        }
         row.appendChild(cell5);
       }
     </script>

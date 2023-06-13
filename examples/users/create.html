@@ -34,13 +34,25 @@
     <script>
       function handleSubmit(event) {
         event.preventDefault();
+
         let form = event.target;
         let formData = new FormData(form);
-        console.log(formData);
-        // console.log(event.target.elements);
-        console.log(Object.fromEntries(formData.entries()));
+        // console.log(formData);
+        let user = Object.fromEntries(formData.entries());
 
-        console.log("handled it");
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(user),
+        })
+          .then(function (response) {
+            console.log(response.status, response.statusText);
+            return response.json();
+          })
+          .then(function (user) {
+            console.log(user);
+            alert("success");
+          });
       }
     </script>
   </body>
