@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+  </head>
+  <body>
+    <h1>Users</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Company Name</th>
+        </tr>
+      </thead>
+      <tbody id="users-tbody"></tbody>
+    </table>
+    <script>
+      "use strict";
+      let usersTbody = document.querySelector("#users-tbody");
+      function fetchUsers() {
+        fetch("http://localhost:3000/users")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (users) {
+            users.forEach(buildUserTableRow);
+            // for (const user of users) {
+            //   buildUserTableRow(user);
+            // }
+          });
+      }
+      fetchUsers();
+
+      function buildUserTableRow(user) {
+        let row = document.createElement("tr");
+        usersTbody.appendChild(row);
+
+        let cell1 = document.createElement("td");
+        cell1.innerText = user.name;
+        row.appendChild(cell1);
+
+        let cell2 = document.createElement("td");
+        cell2.innerText = user.username;
+        row.appendChild(cell2);
+
+        let cell3 = document.createElement("td");
+        cell3.innerText = user.email;
+        row.appendChild(cell3);
+
+        let cell4 = document.createElement("td");
+        cell4.innerText = user.phone;
+        row.appendChild(cell4);
+
+        let cell5 = document.createElement("td");
+        cell5.innerText = user.company.name;
+        row.appendChild(cell5);
+      }
+    </script>
+  </body>
+</html>
