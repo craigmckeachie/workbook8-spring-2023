@@ -14,7 +14,8 @@
   <body>
     <main class="container">
       <article>
-        <h1>Create User</h1>
+        <h1>Edit User</h1>
+
         <form onsubmit="handleSubmit(event);">
           <div class="grid">
             <label for="name"
@@ -39,6 +40,7 @@
             </label>
           </div>
           <div class="action-bar">
+            <div></div>
             <button type="submit">Save</button>
             <a href="index.html" class="cancel contrast outline" role="button"
               >cancel</a
@@ -49,25 +51,44 @@
     </main>
     <script>
       "use strict";
+      const nameInput = document.querySelector("#name");
+      const usernameInput = document.querySelector("#username");
+      const emailInput = document.querySelector("#email");
+      const phoneInput = document.querySelector("#phone");
+
+      function loadPage() {
+        const searchParameters = new URLSearchParams(window.location.search);
+        if (!searchParameters.has("userId")) {
+          throw new Error("No User ID provided.");
+        }
+        const userId = searchParameters.get("userId");
+        fetch(`http://localhost:3000/users/${userId}`)
+          .then(function (response) {
+            console.log(response.status, response.statusText);
+            return response.json();
+          })
+          .then(function (user) {
+            nameInput.value = user.name;
+            usernameInput.value = user.username;
+            emailInput.value = user.email;
+            phoneInput.value = user.phone;
+          });
+      }
+      loadPage();
 
       function handleSubmit(e) {
         e.preventDefault();
 
-        // let user = {
-        //   name: document.querySelector("#name").value,
-        //   username: document.querySelector("#username").value,
-        //   email: document.querySelector("#email").value,
-        //   phone: document.querySelector("#phone").value,
-        // };
-
-        let form = e.target;
-        let formData = new FormData(form);
-        let user = Object.fromEntries(formData.entries());
-        console.log(user);
+        let user = {
+          name: document.querySelector("#name").value,
+          username: document.querySelector("#username").value,
+          email: document.querySelector("#email").value,
+          phone: document.querySelector("#phone").value,
+        };
 
         // console.log(form.elements);
         // fetch("http://localhost:3000/users", {
-        //   method: "POST",
+        //   method: "PUT",
         //   headers: { "Content-type": "application/json" },
         //   body: JSON.stringify(user),
         // })

@@ -25,6 +25,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Company Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="users-tbody"></tbody>
@@ -69,6 +70,16 @@
           cell5.innerText = user.company.name;
         }
         row.appendChild(cell5);
+
+        let cell6 = document.createElement("td");
+
+        let anchorEdit = document.createElement("a");
+
+        anchorEdit.href = `edit.html?userId=${user.id}`;
+        anchorEdit.innerText = "Edit";
+        cell6.appendChild(anchorEdit);
+
+        row.appendChild(cell6);
       }
     </script>
   </body>
