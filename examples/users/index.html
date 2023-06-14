@@ -7,14 +7,17 @@
     <title>Users</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <main>
+    <main class="container">
       <h1>Users</h1>
-      <a href="create.html">Add +</a>
-      <table>
+      <div class="action-bar">
+        <a href="create.html" class="outline button" role="button">+</a>
+      </div>
+      <table role="grid">
         <thead>
           <tr>
             <th>Name</th>

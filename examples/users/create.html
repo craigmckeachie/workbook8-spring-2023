@@ -7,51 +7,75 @@
     <title>Create User</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <main>
+    <main class="container">
       <h1>Create User</h1>
       <form onsubmit="handleSubmit(event);">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" />
+        <div class="grid">
+          <label for="name"
+            >Name
+            <input type="text" id="name" name="name" />
+          </label>
 
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" />
+          <label for="username"
+            >Username
+            <input type="text" id="username" name="username" />
+          </label>
+        </div>
+        <div class="grid">
+          <label for="email"
+            >Email
+            <input type="email" id="email" name="email" />
+          </label>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" />
-
-        <label for="phone">Phone</label>
-        <input type="text" id="phone" name="phone" />
-
+          <label for="phone"
+            >Phone
+            <input type="text" id="phone" name="phone" />
+          </label>
+        </div>
+        <div class="grid">
+          <button type="submit">Save</button>
+        </div>
         <!-- <label for="company-name">Company Name</label>
         <input type="text" id="companyname" name="companyname" /> -->
-        <button type="submit">Create</button>
       </form>
     </main>
     <script>
-      function handleSubmit(event) {
-        event.preventDefault();
+      "use strict";
 
-        let form = event.target;
+      function handleSubmit(e) {
+        e.preventDefault();
+
+        // let user = {
+        //   name: document.querySelector("#name").value,
+        //   username: document.querySelector("#username").value,
+        //   email: document.querySelector("#email").value,
+        //   phone: document.querySelector("#phone").value,
+        // };
+
+        let form = e.target;
         let formData = new FormData(form);
         let user = Object.fromEntries(formData.entries());
+        console.log(user);
 
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify(user),
-        })
-          .then(function (response) {
-            console.log(response.status, response.statusText);
-            return response.json();
-          })
-          .then(function (user) {
-            console.log(user);
-            window.location.replace("index.html");
-          });
+        // console.log(form.elements);
+        // fetch("http://localhost:3000/users", {
+        //   method: "POST",
+        //   headers: { "Content-type": "application/json" },
+        //   body: JSON.stringify(user),
+        // })
+        //   .then(function (response) {
+        //     console.log(response.status, response.statusText);
+        //     return response.json();
+        //   })
+        //   .then(function (user) {
+        //     console.log(user);
+        //     window.location.replace("index.html");
+        //   });
       }
     </script>
   </body>
