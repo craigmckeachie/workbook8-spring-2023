@@ -13,23 +13,28 @@
   </head>
   <body>
     <main class="container">
-      <h1>Users</h1>
-      <div class="action-bar">
-        <a href="create.html" class="outline button" role="button">+</a>
-      </div>
-      <table role="grid">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Company Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="users-tbody"></tbody>
-      </table>
+      <article>
+        <div class="action-bar">
+          <hgroup>
+            <h1>Users</h1>
+            <h2>Click a user to edit</h2>
+          </hgroup>
+          <a href="create.html" class="outline button" role="button">+</a>
+        </div>
+        <table role="grid">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Company Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="users-tbody"></tbody>
+        </table>
+      </article>
     </main>
     <script>
       "use strict";

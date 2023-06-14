@@ -14,7 +14,10 @@
   <body>
     <main class="container">
       <article>
-        <h1>Create User</h1>
+        <hgroup>
+          <h1>User</h1>
+          <h2>Create a new user</h2>
+        </hgroup>
         <form onsubmit="handleSubmit(event);">
           <div class="grid">
             <label for="name"
@@ -53,32 +56,31 @@
       function handleSubmit(e) {
         e.preventDefault();
 
-        // let user = {
-        //   name: document.querySelector("#name").value,
-        //   username: document.querySelector("#username").value,
-        //   email: document.querySelector("#email").value,
-        //   phone: document.querySelector("#phone").value,
-        // };
+        let user = {
+          name: document.querySelector("#name").value,
+          username: document.querySelector("#username").value,
+          email: document.querySelector("#email").value,
+          phone: document.querySelector("#phone").value,
+        };
 
-        let form = e.target;
-        let formData = new FormData(form);
-        let user = Object.fromEntries(formData.entries());
-        console.log(user);
+        // let form = e.target;
+        // let formData = new FormData(form);
+        // let user = Object.fromEntries(formData.entries());
+        // console.log(user);
 
-        // console.log(form.elements);
-        // fetch("http://localhost:3000/users", {
-        //   method: "POST",
-        //   headers: { "Content-type": "application/json" },
-        //   body: JSON.stringify(user),
-        // })
-        //   .then(function (response) {
-        //     console.log(response.status, response.statusText);
-        //     return response.json();
-        //   })
-        //   .then(function (user) {
-        //     console.log(user);
-        //     window.location.replace("index.html");
-        //   });
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(user),
+        })
+          .then(function (response) {
+            console.log(response.status, response.statusText);
+            return response.json();
+          })
+          .then(function (user) {
+            console.log(user);
+            window.location.replace("index.html");
+          });
       }
     </script>
   </body>
