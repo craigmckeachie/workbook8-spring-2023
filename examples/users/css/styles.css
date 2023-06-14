@@ -4,6 +4,17 @@
   align-items: baseline;
 }
 
-.cancel {
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.button-group .primary {
+  width: 27%;
+}
+
+.button-group .secondary {
+  width: 20%;
   margin-left: 1em;
 }
