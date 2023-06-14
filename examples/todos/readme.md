@@ -6,4 +6,6 @@
 3. Create a page that allows you to edit a todo using a form
    - link to this edit page in each row of the list
    - add a cancel link to go back to the list page
-4.
+4. Create a page that allows you to delete a todo
+   - delete page should say: Are you sure you want to delete {todo}? Yes: No
+   - link to this delete page in each row of the list
