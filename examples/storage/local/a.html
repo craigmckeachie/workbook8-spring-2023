@@ -8,10 +8,17 @@
   </head>
   <body>
     <h1>Local Storage A</h1>
+    <nav>
+      <a href="a.html">A</a>
+      <a href="b.html">B</a>
+    </nav>
     <input type="text" id="message-input" />
+    <button onclick="storeMessage();">Store</button>
     <script>
-      const messageInput = document.querySelector("#message-input");
-      localStorage.setItem("message", messageInput.value);
+      function storeMessage() {
+        const messageInput = document.querySelector("#message-input");
+        localStorage.setItem("message", messageInput.value);
+      }
     </script>
   </body>
 </html>

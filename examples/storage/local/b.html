@@ -8,8 +8,14 @@
   </head>
   <body>
     <h1>Local Storage B</h1>
+     <nav>
+      <a href="a.html">A</a>
+      <a href="b.html">B</a>
+    </nav>
+    <p id="message-paragraph"></p>
     <script>
-        localStorage.getItem()
+      const messageParagraph = document.querySelector("#message-paragraph");
+      messageParagraph.innerText = localStorage.getItem("message");
     </script>
   </body>
 </html>
