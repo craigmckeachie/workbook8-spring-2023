@@ -103,6 +103,7 @@
           method: "DELETE",
         }).then(function (response) {
           if (response.ok) {
+            sessionStorage.setItem("message", "Successfully deleted.");
             window.location.replace("index.html");
           } else {
             throw new Error("There was a problem deleting the user.");

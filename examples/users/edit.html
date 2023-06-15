@@ -139,6 +139,7 @@
             return response.json();
           })
           .then(function (user) {
+            sessionStorage.setItem("message", "Successfully saved.");
             window.location.replace("index.html");
           });
       }
