@@ -34,7 +34,7 @@
           </thead>
           <tbody id="users-tbody"></tbody>
         </table>
-        <dialog id="confirm-delete-dialog" onclose="confirmDelete()">
+        <dialog id="confirm-delete-dialog" onclose="closeConfirmation()">
           <article>
             <header>
               <a href="#close" aria-label="Close" class="close"></a>
@@ -123,19 +123,17 @@
       }
 
       function openConfirmation(userId) {
-        console.log(userId);
         userIdInput.value = userId;
         confirmDeleteDialog.showModal();
       }
 
-      function confirmDelete() {
+      function closeConfirmation() {
         let confirmed = confirmDeleteDialog.returnValue === "yes";
         if (!confirmed) {
           return;
         }
 
         let userId = userIdInput.value;
-        console.log(userId);
         fetch(`http://localhost:3000/users/${userId}`, {
           method: "DELETE",
         }).then(function handleResponse(response) {
