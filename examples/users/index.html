@@ -62,7 +62,11 @@
       );
       const userIdInput = document.querySelector("#userid-input");
 
+      function clearTablebody(tbody) {
+        tbody.innerHTML = "";
+      }
       function loadUserTable() {
+        clearTablebody(usersTbody);
         fetch("http://localhost:3000/users")
           .then(function (response) {
             return response.json();
