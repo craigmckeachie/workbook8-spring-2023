@@ -113,6 +113,7 @@
 
       function pageLoad() {
         loadMessage();
+        setTimeout(loadMessage, 5000);
         loadUserTable();
       }
       pageLoad();
@@ -122,6 +123,10 @@
         if (message) {
           messageMark.innerText = message;
           messageMark.style.display = "inline";
+          sessionStorage.removeItem("message");
+        } else {
+          messageMark.innerText = "";
+          messageMark.style.display = "none";
         }
       }
 
