@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete User</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <svg
+              id="logo-35"
+              width="50"
+              height="39"
+              viewBox="0 0 50 39"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z"
+                class="ccompli1"
+                fill="#007AFF"
+              ></path>
+              <path
+                d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z"
+                class="ccustom"
+                fill="#312ECB"
+              ></path>
+            </svg>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="." class="active">Users</a></li>
+          <li><a href=".">Companies</a></li>
+          <li><a href=".">Products</a></li>
+          <li><a href=".">Sign in</a></li>
+        </ul>
+      </nav>
+      <article>
+        <header>
+          <hgroup>
+            <h1>User</h1>
+            <h2>Are you sure you want to delete this user?</h2>
+          </hgroup>
+        </header>
+        <form onsubmit="handleSubmit(event);">
+          <p id="name-paragraph"></p>
+          <p id="email-paragraph"></p>
+          <div class="button-group">
+            <button type="submit" class="primary">Yes</button>
+            <a
+              href="index.html"
+              class="contrast outline secondary"
+              role="button"
+              >No</a
+            >
+          </div>
+        </form>
+      </article>
+    </main>
+    <script>
+      "use strict";
+      const nameParagraph = document.querySelector("#name-paragraph");
+      const emailParagraph = document.querySelector("#email-paragraph");
+
+      function getUserId() {
+        const searchParameters = new URLSearchParams(window.location.search);
+        if (!searchParameters.has("userId")) {
+          throw new Error("No User ID provided.");
+        }
+        const userId = searchParameters.get("userId");
+        return userId;
+      }
+
+      function loadPage() {
+        const userId = getUserId();
+        fetch(`http://localhost:3000/users/${userId}`)
+          .then(function (response) {
+            console.log(response.status, response.statusText);
+            return response.json();
+          })
+          .then(function (user) {
+            nameParagraph.innerText = user.name;
+            emailParagraph.innerText = user.email;
+          });
+      }
+      loadPage();
+
+      function handleSubmit(e) {
+        e.preventDefault();
+
+        const userId = getUserId();
+
+        fetch(`http://localhost:3000/users/${userId}`, {
+          method: "DELETE",
+        }).then(function (response) {
+          if (response.ok) {
+            window.location.replace("index.html");
+          } else {
+            throw new Error("There was a problem deleting the user.");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

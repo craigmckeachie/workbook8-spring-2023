@@ -150,7 +150,10 @@
         let anchorDelete = document.createElement("a");
         anchorDelete.className = "delete";
         anchorDelete.innerText = "Delete";
-        anchorDelete.onclick = () => openConfirmation(user.id);
+        anchorDelete.href = `delete.html?userId=${user.id}`;
+        // anchorDelete.onclick = function handleClick() {
+        //   openConfirmation(user.id);
+        // };
         cell6.appendChild(anchorDelete);
 
         row.appendChild(cell6);
