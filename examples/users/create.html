@@ -114,7 +114,7 @@
             return response.json();
           })
           .then(function (user) {
-            console.log(user);
+            sessionStorage.setItem("message", "Successfully saved.");
             window.location.replace("index.html");
           });
       }
