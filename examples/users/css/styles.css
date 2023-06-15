@@ -18,3 +18,7 @@
   width: 20%;
   margin-left: 1em;
 }
+
+#users-tbody > tr > td > a {
+  margin-left: .5em;
+}

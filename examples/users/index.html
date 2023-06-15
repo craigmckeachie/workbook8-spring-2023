@@ -34,25 +34,33 @@
           </thead>
           <tbody id="users-tbody"></tbody>
         </table>
-        <dialog>
+        <dialog id="confirm-delete-dialog" open>
           <article>
             <header>
               <a href="#close" aria-label="Close" class="close"></a>
               <h3>Delete?</h3>
             </header>
             <section>Are you sure you want to delete this user?</section>
-            <div class="grid">
-              <button role="button" class="">Yes</button>
-              <button role="button" class="contrast">No</button>
-            </div>
+            <form method="dialog" onsubmit="confirmDelete()">
+              <div class="grid">
+                <input type="hidden" id="userid-input" />
+                <button type="submit" role="button">Yes</button>
+                <button type="reset" role="button" class="contrast">No</button>
+              </div>
+            </form>
           </article>
         </dialog>
       </article>
     </main>
     <script>
       "use strict";
-      let usersTbody = document.querySelector("#users-tbody");
-      function fetchUsers() {
+      const usersTbody = document.querySelector("#users-tbody");
+      const confirmDeleteDialog = document.querySelector(
+        "#confirm-delete-dialog"
+      );
+      const userIdInput = document.querySelector("#userid-input");
+
+      function loadUserTable() {
         fetch("http://localhost:3000/users")
           .then(function (response) {
             return response.json();
@@ -64,7 +72,7 @@
             }
           });
       }
-      fetchUsers();
+      loadUserTable();
 
       function buildUserTableRow(user) {
         let row = document.createElement("tr");
@@ -95,13 +103,41 @@
         let cell6 = document.createElement("td");
 
         let anchorEdit = document.createElement("a");
-
         anchorEdit.href = `edit.html?userId=${user.id}`;
         anchorEdit.innerText = "Edit";
         cell6.appendChild(anchorEdit);
 
+        let anchorDelete = document.createElement("a");
+        anchorDelete.className = "delete";
+        anchorDelete.innerText = "Delete";
+        anchorDelete.onclick = (event) => openConfirmation(user.id, event);
+        cell6.appendChild(anchorDelete);
+
         row.appendChild(cell6);
       }
+
+      function openConfirmation(userId, event) {
+        // event.preventDefault();
+        console.log(userId, event);
+        userIdInput.value = userId;
+        confirmDeleteDialog.showModal();
+      }
+
+      function confirmDelete(event) {
+        let userId = userIdInput.value;
+        fetch(`http://localhost:3000/users/${userId}`, {
+          method: "Delete",
+        }).then(function handleResponse(response) {
+          if (response.ok) {
+            loadUserTable();
+          } else {
+            throw new Error(
+              "There was an error deleting the user. Please try again."
+            );
+          }
+        });
+      }
+      confirmDeleteDialog.close();
     </script>
   </body>
 </html>
