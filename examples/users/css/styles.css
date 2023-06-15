@@ -20,5 +20,14 @@
 }
 
 #users-tbody > tr > td > a {
-  margin-left: .5em;
+  margin-left: 0.5em;
+}
+
+.active {
+  font-weight: bolder;
+  
+}
+
+nav li~a.active{
+border-bottom: 1px solid white;
 }
