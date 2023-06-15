@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session Storage</title>
+  </head>
+  <body>
+    <h1>Session Storage A</h1>
+    <nav>
+      <a href="a.html">A</a>
+      <a href="b.html">B</a>
+    </nav>
+    <input type="text" id="message-input" />
+    <button onclick="storeMessage();">Store</button>
+    <script>
+      function storeMessage() {
+        const messageInput = document.querySelector("#message-input");
+        sessionStorage.setItem("message", messageInput.value);
+      }
+    </script>
+  </body>
+</html>
