@@ -68,7 +68,7 @@
           </thead>
           <tbody id="users-tbody"></tbody>
         </table>
-        <dialog id="confirm-delete-dialog" onclose="closeConfirmation()">
+        <dialog id="confirm-delete-dialog">
           <article>
             <header>
               <a href="#close" aria-label="Close" class="close"></a>
@@ -97,27 +97,14 @@
       const userIdInput = document.querySelector("#userid-input");
       const messageMark = document.querySelector("#message-mark");
 
+      // confirmDeleteDialog.onclick = closeConfirmation;
+      confirmDeleteDialog.addEventListener("click", closeConfirmation);
+    
+
       function pageLoad() {
         loadMessage();
         setTimeout(loadMessage, 5000);
         loadUserTable();
-      }
-      pageLoad();
-
-      function loadMessage() {
-        const message = sessionStorage.getItem("message");
-        if (message) {
-          messageMark.innerText = message;
-          messageMark.style.display = "inline";
-          sessionStorage.removeItem("message");
-        } else {
-          messageMark.innerText = "";
-          messageMark.style.display = "none";
-        }
-      }
-
-      function clearTablebody(tbody) {
-        tbody.innerHTML = "";
       }
 
       function loadUserTable() {
@@ -180,6 +167,10 @@
         row.appendChild(cell6);
       }
 
+      function clearTablebody(tbody) {
+        tbody.innerHTML = "";
+      }
+
       function openConfirmation(userId) {
         userIdInput.value = userId;
         confirmDeleteDialog.showModal();
@@ -208,6 +199,23 @@
           }
         });
       }
+
+      function loadMessage() {
+        const message = sessionStorage.getItem("message");
+        if (message) {
+          messageMark.innerText = message;
+          messageMark.style.display = "inline";
+          sessionStorage.removeItem("message");
+        } else {
+          messageMark.innerText = "";
+          messageMark.style.display = "none";
+        }
+      }
+
+      // window.onload = pageLoad;
+      // window.addEventListener("load", pageLoad);
+
+      document.addEventListener("DOMContentLoaded", pageLoad);
     </script>
   </body>
 </html>
