@@ -171,10 +171,10 @@
         let anchorDelete = document.createElement("a");
         anchorDelete.className = "delete";
         anchorDelete.innerText = "Delete";
-        anchorDelete.href = `delete.html?userId=${user.id}`;
-        // anchorDelete.onclick = function handleClick() {
-        //   openConfirmation(user.id);
-        // };
+        // anchorDelete.href = `delete.html?userId=${user.id}`;
+        anchorDelete.onclick = function handleClick() {
+          openConfirmation(user.id);
+        };
         cell6.appendChild(anchorDelete);
 
         row.appendChild(cell6);
@@ -198,6 +198,9 @@
           if (response.ok) {
             //todo remove row by "data-user-id"
             loadUserTable();
+            sessionStorage.setItem("message", "Successfully deleted.");
+            loadMessage();
+            setTimeout(loadMessage, 5000);
           } else {
             throw new Error(
               "There was an error deleting the user. Please try again."
